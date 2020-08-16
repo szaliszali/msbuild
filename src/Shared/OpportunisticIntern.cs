@@ -17,16 +17,9 @@ namespace Microsoft.Build
     ///
     ///     string interned = OpportunisticIntern.Intern(String.Join(",",someStrings));
     ///
-    /// There are currently two underlying implementations. The new default one in WeakStringCacheInterner is based on weak GC handles.
-    /// The legacy one in BucketedPrioritizedStringList is available only as an escape hatch by setting an environment variable.
+    /// There is currently one underlying implementations. The default one in WeakStringCacheInterner is based on weak GC handles.
     ///
-    /// The legacy implementation uses heuristics to decide whether it will be efficient to intern a string or not. There is no
-    /// guarantee that a string will intern.
-    ///
-    /// The thresholds and sizes were determined by experimentation to give the best number of bytes saved
-    /// at reasonable elapsed time cost.
-    ///
-    /// The new implementation interns all strings but maintains only weak references so it doesn't keep the strings alive.
+    /// The implementation interns all strings but maintains only weak references so it doesn't keep the strings alive.
     /// </summary>
     internal sealed class OpportunisticIntern
     {
