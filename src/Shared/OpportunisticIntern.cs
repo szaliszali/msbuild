@@ -51,8 +51,7 @@ namespace Microsoft.Build
         /// <summary>
         /// The singleton instance of OpportunisticIntern.
         /// </summary>
-        private static OpportunisticIntern _instance = new OpportunisticIntern();
-        internal static OpportunisticIntern Instance => _instance;
+        internal static OpportunisticIntern Instance { get; private set; } = new OpportunisticIntern();
 
         /// <summary>
         /// The interner implementation in use.
@@ -70,7 +69,7 @@ namespace Microsoft.Build
         internal static void ResetForTests()
         {
             Debug.Assert(BuildEnvironmentHelper.Instance.RunningTests);
-            _instance = new OpportunisticIntern();
+            Instance = new OpportunisticIntern();
         }
 
         /// <summary>
